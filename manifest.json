@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Image Downloader",
+    "version": "1.0",
+    "description": "直接下载图片到默认目录，无需对话框提示",
+    "permissions": [
+        "contextMenus",
+        "downloads"
+    ],
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_title": "Image Downloader"
+    },
+    "commands": {
+        "download-image": {
+            "suggested_key": {
+                "default": "Alt+D",
+                "mac": "Alt+D"
+            },
+            "description": "Download image under cursor"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}

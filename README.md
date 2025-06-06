@@ -1,2 +1,59 @@
-# chrome-download-one-image
-Chrome extension. The download image with just one click.
+# Chrome Download One Image 扩展
+
+一个简单的Chrome扩展，允许用户通过右键菜单直接下载图片到默认下载目录，无需任何对话框提示。
+
+## 功能特性
+
+- **右键菜单**: 在任何图片上右键，显示"Download Image"选项
+- **快捷键下载**: 按 `Alt+D` 直接下载鼠标悬停的图片
+- 直接下载到Chrome默认下载目录
+- 无需用户确认对话框
+- 自动处理文件名冲突（重复文件名会自动重命名）
+- 支持所有常见图片格式
+
+## 安装方法
+
+1. 打开Chrome浏览器
+2. 访问 `chrome://extensions/`
+3. 开启右上角的"开发者模式"
+4. 点击"加载已解压的扩展程序"
+5. 选择包含此扩展文件的文件夹
+
+## 使用方法
+
+### 方法一：快捷键（推荐）
+1. 将鼠标悬停在要下载的图片上
+2. 按 `Alt+D` 键
+3. 图片立即开始下载
+
+### 方法二：右键菜单
+1. 在任何网页的图片上右键
+2. 选择"Download Image"选项（或按 D 键）
+3. 图片将自动下载到Chrome的默认下载目录
+
+## 文件结构
+
+```
+chrome-download-one-image/
+├── manifest.json      # 扩展配置文件
+├── background.js      # 背景脚本，处理快捷键、右键菜单和下载逻辑
+├── content.js         # 内容脚本，跟踪鼠标悬停的图片
+├── test.html          # 测试页面
+└── README.md          # 说明文档
+```
+
+## 图标文件
+
+目前缺少图标文件，你可以：
+1. 添加自己的16x16、48x48、128x128像素的PNG图标文件
+2. 或者从manifest.json中移除icons部分
+
+## 权限说明
+
+- `contextMenus`: 用于创建右键菜单项
+- `downloads`: 用于下载文件到本地
+- `host_permissions`: 允许访问所有网站的图片
+
+## 开发说明
+
+这是一个使用Manifest V3的Chrome扩展，使用Service Worker作为背景脚本。
