@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Image Downloader",
+    "name": "Alt+D Image Downloader",
     "version": "1.0",
     "description": "直接下载图片到默认目录，无需对话框提示",
     "permissions": [
@@ -14,7 +14,7 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_title": "Image Downloader"
+        "default_title": "Alt+D Image Downloader"
     },
     "commands": {
         "download-image": {
