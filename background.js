@@ -16,34 +16,83 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 // 监听快捷键命令
-chrome.commands.onCommand.addListener((command) => {
+chrome.commands.onCommand.addListener(async (command) => {
     if (command === 'download-image') {
-        // 获取当前活动标签页
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            if (tabs[0]) {
-                // 发送消息给内容脚本，请求下载悬停的图片
-                chrome.tabs.sendMessage(tabs[0].id, { action: 'downloadHoveredImage' }, (response) => {
-                    if (chrome.runtime.lastError) {
-                        console.error('发送消息失败:', chrome.runtime.lastError);
-                    } else if (response && !response.success) {
-                        console.log('没有找到可下载的图片');
-                    } else if (response && response.fallback) {
-                        console.log('下载页面中的第一个图片');
-                    }
+        const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tabs[0]) {
+            try {
+                // 注入鼠标跟踪脚本（如果还没有注入）
+                await chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    func: initializeHoverTracking
                 });
+
+                // 获取当前悬停的图片并下载
+                const results = await chrome.scripting.executeScript({
+                    target: { tabId: tabs[0].id },
+                    func: getCurrentHoveredImage
+                });
+
+                if (results[0].result) {
+                    downloadImageFromUrl(results[0].result);
+                } else {
+                    console.log('没有找到悬停的图片');
+                }
+            } catch (error) {
+                console.error('脚本执行失败:', error);
             }
-        });
+        }
     }
 });
 
-// 监听来自内容脚本的消息
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === 'downloadImage' && request.imageUrl) {
-        downloadImageFromUrl(request.imageUrl);
-        sendResponse({ success: true });
+// 初始化鼠标悬停跟踪（注入到页面中）
+function initializeHoverTracking() {
+    // 避免重复初始化
+    if (window.imageHoverTracker) return;
+
+    window.imageHoverTracker = {
+        currentHoveredImage: null,
+
+        init() {
+            document.addEventListener('mouseover', (event) => {
+                if (event.target.tagName === 'IMG') {
+                    this.currentHoveredImage = event.target;
+                }
+            });
+
+            document.addEventListener('mouseout', (event) => {
+                if (event.target.tagName === 'IMG') {
+                    setTimeout(() => {
+                        if (this.currentHoveredImage === event.target) {
+                            this.currentHoveredImage = null;
+                        }
+                    }, 100);
+                }
+            });
+        }
+    };
+
+    window.imageHoverTracker.init();
+}
+
+// 获取当前悬停的图片（注入到页面中）
+function getCurrentHoveredImage() {
+    if (window.imageHoverTracker && window.imageHoverTracker.currentHoveredImage) {
+        return window.imageHoverTracker.currentHoveredImage.src;
     }
-    return true;
-});
+
+    // Fallback: 找第一个可见的图片
+    const images = document.querySelectorAll('img');
+    for (let img of images) {
+        if (img.offsetWidth > 0 && img.offsetHeight > 0 && img.src) {
+            return img.src;
+        }
+    }
+
+    return null;
+}
+
+// 不再需要监听来自内容脚本的消息，因为我们使用动态注入
 
 // 提取下载逻辑为独立函数
 function downloadImageFromUrl(imageUrl) {

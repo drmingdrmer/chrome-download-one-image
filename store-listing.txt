@@ -1,0 +1,45 @@
+==============================================
+Chrome Web Store Listing Information
+==============================================
+
+Extension Name: Alt+D Image Downloader
+Version: 1.0
+Package: alt-d-image-downloader-v1.0.zip
+Category: Productivity
+
+Short Description (132 chars max):
+Download images instantly with Alt+D hotkey or right-click menu. No dialogs, direct to Downloads folder.
+
+Detailed Description:
+**Alt+D Image Downloader** - The fastest way to download images from any website!
+
+🚀 **Lightning Fast**: Just hover over any image and press Alt+D to download instantly
+📱 **Right-Click Option**: Traditional right-click menu with "Download Image" option  
+⚡ **Zero Dialogs**: Direct download to your Chrome Downloads folder
+🎯 **Smart Detection**: Automatically detects images under your cursor
+
+## How to Use:
+1. **Super Fast Method**: Hover over any image → Press Alt+D → Done!
+2. **Traditional Method**: Right-click image → Select "Download Image"
+
+## Perfect for:
+- Web designers collecting references
+- Students saving images for projects  
+- Social media content creators
+- Anyone who downloads lots of images
+
+## Privacy & Security:
+- No data collection
+- Works entirely offline
+- Minimal permissions required
+
+Save time and clicks - Download images the smart way!
+
+Keywords: image downloader, download images, alt+d, hotkey, fast download, right click, save image, web images, instant download
+
+Permissions:
+- contextMenus: Create right-click menu items
+- downloads: Download files to user's computer
+- Host permissions (*://*/*): Access images on all websites
+
+==============================================

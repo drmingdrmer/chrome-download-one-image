@@ -1,58 +1,31 @@
 # Alt+D Image Downloader
 
-一个简单的Chrome扩展，使用 `Alt+D` 快捷键或右键菜单直接下载图片到默认下载目录，无需任何对话框提示。
+Chrome扩展：按 `Alt+D` 快捷键直接下载鼠标悬停的图片。
 
-## 功能特性
+## 功能
 
-- **🚀 超快捷键**: 按 `Alt+D` 直接下载鼠标悬停的图片（主要功能）
-- **📱 右键菜单**: 在任何图片上右键，显示"Download Image"选项
-- **⚡ 一键下载**: 直接下载到Chrome默认下载目录，无需任何对话框
-- **🎯 智能悬停**: 自动识别鼠标悬停的图片
-- **🔄 冲突处理**: 自动处理文件名冲突（重复文件名会自动重命名）
-- **🖼️ 全格式支持**: 支持所有常见图片格式
+- 按 `Alt+D` 下载悬停的图片
+- 右键菜单"Download Image"选项
+- 直接下载到默认目录，无对话框
 
-## 安装方法
+## 使用
 
-1. 打开Chrome浏览器
-2. 访问 `chrome://extensions/`
-3. 开启右上角的"开发者模式"
-4. 点击"加载已解压的扩展程序"
-5. 选择包含此扩展文件的文件夹
-
-## 使用方法
-
-### 方法一：快捷键（推荐）
-1. 将鼠标悬停在要下载的图片上
+1. 鼠标悬停在图片上
 2. 按 `Alt+D` 键
-3. 图片立即开始下载
+3. 图片开始下载
 
-### 方法二：右键菜单
-1. 在任何网页的图片上右键
-2. 选择"Download Image"选项（或按 D 键）
-3. 图片将自动下载到Chrome的默认下载目录
+或者右键图片选择"Download Image"。
 
-## 文件结构
+## 安装
 
-```
-alt-d-image-downloader/
-├── manifest.json      # 扩展配置文件
-├── background.js      # 背景脚本，处理快捷键、右键菜单和下载逻辑
-├── content.js         # 内容脚本，跟踪鼠标悬停的图片
-├── test.html          # 测试页面
-├── icons/             # 图标文件目录
-│   ├── favicon-16x16.png
-│   ├── favicon-32x32.png
-│   ├── apple-touch-icon.png
-│   └── android-chrome-192x192.png
-└── README.md          # 说明文档
-```
+1. 访问 `chrome://extensions/`
+2. 开启"开发者模式"
+3. 点击"加载已解压的扩展程序"
+4. 选择此文件夹
 
-## 权限说明
+## Chrome Web Store
 
-- `contextMenus`: 用于创建右键菜单项
-- `downloads`: 用于下载文件到本地
-- `host_permissions`: 允许访问所有网站的图片
+扩展发布地址：[即将上线]
 
-## 开发说明
-
-这是一个使用Manifest V3的Chrome扩展，使用Service Worker作为背景脚本。
+开发者控制台：
+https://chrome.google.com/webstore/devconsole/
