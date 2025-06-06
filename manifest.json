@@ -14,7 +14,17 @@
         "service_worker": "background.js"
     },
     "action": {
-        "default_title": "Alt+D Image Downloader"
+        "default_title": "Alt+D Image Downloader",
+        "default_icon": {
+            "16": "icons/favicon-16x16.png",
+            "32": "icons/favicon-32x32.png"
+        }
+    },
+    "icons": {
+        "16": "icons/favicon-16x16.png",
+        "32": "icons/favicon-32x32.png",
+        "48": "icons/apple-touch-icon.png",
+        "128": "icons/android-chrome-192x192.png"
     },
     "commands": {
         "download-image": {

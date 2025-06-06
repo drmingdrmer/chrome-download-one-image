@@ -39,14 +39,13 @@ alt-d-image-downloader/
 ├── background.js      # 背景脚本，处理快捷键、右键菜单和下载逻辑
 ├── content.js         # 内容脚本，跟踪鼠标悬停的图片
 ├── test.html          # 测试页面
+├── icons/             # 图标文件目录
+│   ├── favicon-16x16.png
+│   ├── favicon-32x32.png
+│   ├── apple-touch-icon.png
+│   └── android-chrome-192x192.png
 └── README.md          # 说明文档
 ```
-
-## 图标文件
-
-目前缺少图标文件，你可以：
-1. 添加自己的16x16、48x48、128x128像素的PNG图标文件
-2. 或者从manifest.json中移除icons部分
 
 ## 权限说明
 
